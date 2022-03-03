@@ -12,7 +12,9 @@ const typeDefs = gql`
         password:String,
         createAt:String
     }
-
+    type Token {
+        token:String
+    }
     input UserInput {
         # las ! significa que es obligatorio
         name:String!
@@ -20,7 +22,12 @@ const typeDefs = gql`
         email:String!
         password:String!
     }
-    
+
+    input LoginUser {
+        # las ! significa que es obligatorio
+        email:String!
+        password:String!
+    }
     type Query {
         #User
         getUser: User
@@ -29,6 +36,7 @@ const typeDefs = gql`
     type Mutation {
         #User
         register(user:UserInput): User
+        login(user:LoginUser): Token
     }
 `;
 module.exports = typeDefs;
